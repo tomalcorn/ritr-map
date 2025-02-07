@@ -84,8 +84,17 @@
             const scaledX = planet.x * scaleX + offsetX;
             const scaledY = planet.y * scaleY + offsetY;
 
-            box.style.left = `${scaledX + 20}px`;
-            box.style.top = `${scaledY}px`;
+            // Position box based on right/bottom flags
+            const boxWidth = 160; // Approximate width of selection box
+            const boxHeight = 50; // Approximate height of selection box
+            const spacing = 20; // Space between box and planet
+
+            box.style.left = planet.right ? 
+            `${scaledX - boxWidth - spacing}px` : 
+            `${scaledX + spacing}px`;
+            box.style.top = planet.bottom ? 
+            `${scaledY - boxHeight - spacing - 30}px` : 
+            `${scaledY + spacing}px`;
 
             // Create a glowing circle around the planet
             const glowCircle = document.createElement('div');

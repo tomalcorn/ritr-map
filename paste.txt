@@ -1,4 +1,0 @@
-const scaleX = 0.301;  // Adjust horizontal scale
-        const scaleY = 0.302;  // Adjust vertical scale
-        const offsetX = 18;  // Horizontal shift
-        const offsetY = 15;  // Vertical shift
