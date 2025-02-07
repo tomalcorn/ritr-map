@@ -37,9 +37,11 @@
             });
 
         mapContainer.onclick = function(e) {
-            // Remove any existing selection boxes
+            // Remove any existing selection boxes or circles
             const existingBox = document.querySelector('.sticker-selection-box');
             if (existingBox) existingBox.remove();
+            const existingCircles = document.querySelectorAll('.glow-circle');
+            existingCircles.forEach(circle => circle.remove());
 
             const rect = mapContainer.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -85,6 +87,20 @@
             box.style.left = `${scaledX + 20}px`;
             box.style.top = `${scaledY}px`;
 
+            // Create a glowing circle around the planet
+            const glowCircle = document.createElement('div');
+            glowCircle.className = 'glow-circle';
+            glowCircle.style.position = 'absolute';
+            glowCircle.style.width = '30px';   // Adjust size as needed
+            glowCircle.style.height = '30px';
+            glowCircle.style.borderRadius = '50%';
+            glowCircle.style.border = '2px solid yellow';
+            glowCircle.style.boxShadow = '0px 0px 15px 5px yellow';
+            glowCircle.style.left = `${scaledX - 17}px`;  // Centered around planet
+            glowCircle.style.top = `${scaledY - 16}px`;
+            
+            mapContainer.appendChild(glowCircle);
+
             const stickers = [
                 { name: 'Neutral', path: '/static/stickers/neutral.png' },
                 { name: 'Empire Base', path: '/static/stickers/empire_base.png' },
@@ -109,13 +125,11 @@
                 stickerOption.onclick = () => {
                     updatePlanetSticker(planet.name, stickerType.name.toLowerCase().replace(" ", "_"));
 
-                    // Remove existing planet sticker
                     const existingSticker = document.querySelector(`[data-planet="${planet.name}"]`);
                     if (existingSticker) {
                         existingSticker.remove();
                     }
 
-                    // Add new sticker unless neutral
                     if (stickerType.name.toLowerCase() !== 'neutral') {
                         const newSticker = document.createElement('img');
                         newSticker.src = stickerType.path;
@@ -130,6 +144,7 @@
                     }
 
                     box.remove();
+                    glowCircle.remove(); // Remove glow when selection box closes
                 };
 
                 const stickerLabel = document.createElement('div');
