@@ -86,23 +86,29 @@
             box.style.top = `${scaledY}px`;
 
             const stickers = [
-                { name: 'neutral', path: '/static/stickers/neutral.png' },
-                { name: 'empire_base', path: '/static/stickers/empire_base.png' },
-                { name: 'empire_pres', path: '/static/stickers/empire_pres.png' },
-                { name: 'rebel_base', path: '/static/stickers/rebel_base.png' },
-                { name: 'rebel_pres', path: '/static/stickers/rebel_pres.png' }
+                { name: 'Neutral', path: '/static/stickers/neutral.png' },
+                { name: 'Empire Base', path: '/static/stickers/empire_base.png' },
+                { name: 'Empire Presence', path: '/static/stickers/empire_pres.png' },
+                { name: 'Rebel Base', path: '/static/stickers/rebel_base.png' },
+                { name: 'Rebel Presence', path: '/static/stickers/rebel_pres.png' }
             ];
 
             stickers.forEach(stickerType => {
+                const stickerWrapper = document.createElement('div');
+                stickerWrapper.style.display = 'flex';
+                stickerWrapper.style.flexDirection = 'column';
+                stickerWrapper.style.alignItems = 'center';
+                stickerWrapper.style.width = '30px';  // Fixed width to maintain uniform layout
+
                 const stickerOption = document.createElement('img');
                 stickerOption.src = stickerType.path;
                 stickerOption.style.width = '30px';
                 stickerOption.style.height = '30px';
                 stickerOption.style.cursor = 'pointer';
-                
+
                 stickerOption.onclick = () => {
-                    updatePlanetSticker(planet.name, stickerType.name);
-                    
+                    updatePlanetSticker(planet.name, stickerType.name.toLowerCase().replace(" ", "_"));
+
                     // Remove existing planet sticker
                     const existingSticker = document.querySelector(`[data-planet="${planet.name}"]`);
                     if (existingSticker) {
@@ -110,7 +116,7 @@
                     }
 
                     // Add new sticker unless neutral
-                    if (stickerType.name !== 'neutral') {
+                    if (stickerType.name.toLowerCase() !== 'neutral') {
                         const newSticker = document.createElement('img');
                         newSticker.src = stickerType.path;
                         newSticker.className = 'planet-sticker';
@@ -126,7 +132,15 @@
                     box.remove();
                 };
 
-                box.appendChild(stickerOption);
+                const stickerLabel = document.createElement('div');
+                stickerLabel.textContent = stickerType.name;
+                stickerLabel.style.fontSize = '10px';
+                stickerLabel.style.textAlign = 'center';
+                stickerLabel.style.fontFamily = '"Gill Sans", sans-serif'; // change font here
+
+                stickerWrapper.appendChild(stickerOption);
+                stickerWrapper.appendChild(stickerLabel);
+                box.appendChild(stickerWrapper);
             });
 
             mapContainer.appendChild(box);
