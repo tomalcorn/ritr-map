@@ -3,6 +3,9 @@
 <head>
     <title>RITR Interactive Map</title>
     <style>
+        #container {
+            display: flex;
+        }
         #map-container {
             position: relative;
             display: inline-block;
@@ -13,6 +16,29 @@
             font-size: 24px;
             margin-bottom: 10px;
         }
+        #sidebar {
+            display: inline-block;
+            margin-left: 20px; /* Space between map and sidebar */
+            padding: 10px;
+            border: 1px solid black;
+            background-color: #f4f4f4;
+            min-width: 200px; /* Sidebar width */
+        }
+
+        #clear-stickers-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #clear-stickers-btn:hover {
+            background-color: darkred;
+        }
     </style>
 </head>
 <body>
@@ -20,16 +46,27 @@
         Star Wars Armada: Rebellion in the Rim <br> Interactive Map
     </h1>
     
-    <div id="map-container">
-        <img id="map" src="/static/map.jpg" style="max-width: 800px;">
-    </div>
+    <!-- Parent Flex Container -->
+    <div id="container">
+        <!-- Map Container -->
+        <div id="map-container">
+            <img id="map" src="/static/map.jpg" style="max-width: 900px;">
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <button id="clear-stickers-btn">Clear Stickers</button>
+        </div>
 
     <script>
+        document.getElementById('clear-stickers-btn').addEventListener('click', () => {
+            document.querySelectorAll('.planet-sticker').forEach(sticker => sticker.remove());
+        });
         const mapContainer = document.getElementById('map-container');
-        const scaleX = 0.301;
-        const scaleY = 0.302;
-        const offsetX = 18;
-        const offsetY = 15;
+        const scaleX = 0.339;
+        const scaleY = 0.3396;
+        const offsetX = 20.15;
+        const offsetY = 16.875;
         let planets = {};
 
         // Load initial stickers when page loads
@@ -72,8 +109,8 @@
             sticker.className = 'planet-sticker';
             sticker.dataset.planet = planetName;
             sticker.style.position = 'absolute';
-            sticker.style.width = '30px';
-            sticker.style.height = '30px';
+            sticker.style.width = '35px';
+            sticker.style.height = '35px';
             sticker.style.left = `${scaledX}px`;
             sticker.style.top = `${scaledY}px`;
             mapContainer.appendChild(sticker);
@@ -135,13 +172,13 @@
             const glowCircle = document.createElement('div');
             glowCircle.className = 'glow-circle';
             glowCircle.style.position = 'absolute';
-            glowCircle.style.width = '30px';   // Adjust size as needed
-            glowCircle.style.height = '30px';
+            glowCircle.style.width = '33.5px';   // Adjust size as needed
+            glowCircle.style.height = '33.5px';
             glowCircle.style.borderRadius = '50%';
             glowCircle.style.border = '2px solid yellow';
             glowCircle.style.boxShadow = '0px 0px 15px 5px yellow';
-            glowCircle.style.left = `${scaledX - 17}px`;  // Centered around planet
-            glowCircle.style.top = `${scaledY - 16}px`;
+            glowCircle.style.left = `${scaledX - 20}px`;  // Centered around planet
+            glowCircle.style.top = `${scaledY - 18}px`;
             
             mapContainer.appendChild(glowCircle);
 
@@ -158,12 +195,12 @@
                 stickerWrapper.style.display = 'flex';
                 stickerWrapper.style.flexDirection = 'column';
                 stickerWrapper.style.alignItems = 'center';
-                stickerWrapper.style.width = '30px';  // Fixed width to maintain uniform layout
+                stickerWrapper.style.width = '35px';  // Fixed width to maintain uniform layout
 
                 const stickerOption = document.createElement('img');
                 stickerOption.src = stickerType.path;
-                stickerOption.style.width = '30px';
-                stickerOption.style.height = '30px';
+                stickerOption.style.width = '35px';
+                stickerOption.style.height = '35px';
                 stickerOption.style.cursor = 'pointer';
 
                 stickerOption.onclick = () => {
@@ -180,8 +217,8 @@
                         newSticker.className = 'planet-sticker';
                         newSticker.dataset.planet = planet.name;
                         newSticker.style.position = 'absolute';
-                        newSticker.style.width = '30px';
-                        newSticker.style.height = '30px';
+                        newSticker.style.width = '35px';
+                        newSticker.style.height = '35px';
                         newSticker.style.left = `${scaledX - 15}px`;
                         newSticker.style.top = `${scaledY - 15}px`;
                         mapContainer.appendChild(newSticker);

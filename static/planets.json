@@ -7,7 +7,7 @@
     "bottom": false
   },
   "DATHOMIR": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1430,
     "y": 215,
     "right": false,
@@ -21,14 +21,14 @@
     "bottom": false
   },
   "MYGEETO": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 600,
     "y": 540,
     "right": false,
     "bottom": false
   },
   "MON CALA": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2475,
     "y": 945,
     "right": true,
@@ -112,7 +112,7 @@
     "bottom": false
   },
   "MONTROSS": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1360,
     "y": 1730,
     "right": false,
@@ -120,20 +120,20 @@
   },
   "RING OF KAFRENE": {
     "status": "neutral",
-    "x": 760,
-    "y": 2065,
+    "x": 755,
+    "y": 2070,
     "right": false,
     "bottom": false
   },
   "RODIA": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 1565,
     "y": 2015,
     "right": false,
     "bottom": false
   },
   "ENDOR": {
-    "status": "neutral",
+    "status": "empire presence",
     "x": 478,
     "y": 2475,
     "right": false,
@@ -168,7 +168,7 @@
     "bottom": false
   },
   "HOTH": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 605,
     "y": 3155,
     "right": false,
@@ -189,21 +189,21 @@
     "bottom": false
   },
   "RYLOTH": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2455,
     "y": 3070,
     "right": true,
     "bottom": false
   },
   "MUSTAFAR": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 1410,
     "y": 3400,
     "right": false,
     "bottom": true
   },
   "SMUGGLER'S RUN": {
-    "status": "empire base",
+    "status": "rebel base",
     "x": 2350,
     "y": 3355,
     "right": true,

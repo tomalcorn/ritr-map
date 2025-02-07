@@ -1,0 +1,44 @@
+/* Map Container */
+.map-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Page Title */
+.page-title {
+    font-family: "Gill Sans", sans-serif;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Parent Flexbox Layout */
+.container {
+    display: flex;           /* Places map & sidebar side by side */
+    align-items: flex-start; /* Aligns them at the top */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    margin-left: 20px;       /* Space between map and sidebar */
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #f4f4f4;
+    min-width: 200px;
+}
+
+/* Clear Stickers Button */
+.clear-stickers-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.clear-stickers-btn:hover {
+    background-color: darkred;
+}
