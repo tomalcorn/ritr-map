@@ -1,13 +1,13 @@
 {
   "DANTOOINE": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 728,
     "y": 280,
     "right": false,
     "bottom": false
   },
   "DATHOMIR": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 1430,
     "y": 215,
     "right": false,
@@ -21,7 +21,7 @@
     "bottom": false
   },
   "MYGEETO": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 600,
     "y": 540,
     "right": false,
@@ -112,7 +112,7 @@
     "bottom": false
   },
   "MONTROSS": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 1360,
     "y": 1730,
     "right": false,
@@ -126,7 +126,7 @@
     "bottom": false
   },
   "RODIA": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 1565,
     "y": 2015,
     "right": false,
@@ -154,7 +154,7 @@
     "bottom": false
   },
   "GEONOSIS": {
-    "status": "empire presence",
+    "status": "neutral",
     "x": 2390,
     "y": 2650,
     "right": true,
@@ -182,7 +182,7 @@
     "bottom": false
   },
   "UTAPAU": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2008,
     "y": 2990,
     "right": true,

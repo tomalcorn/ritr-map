@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Map Sticker Placer</title>
+    <title>RITR Interactive Map</title>
     <style>
         #map-container {
             position: relative;
             display: inline-block;
         }
-        .sticker {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            transform: translate(-50%, -50%);
-            background-color: red;
-            border-radius: 50%;
+        #page-title {
+            font-family: "Gill Sans", sans-serif; /* ✅ Fixed */
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
+    <h1 id="page-title">
+        Star Wars Armada: Rebellion in the Rim <br> Interactive Map
+    </h1>
+    
     <div id="map-container">
         <img id="map" src="/static/map.jpg" style="max-width: 800px;">
     </div>
