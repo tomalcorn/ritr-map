@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Sticker Placer</title>
+    <style>
+        #map-container {
+            position: relative;
+            display: inline-block;
+        }
+        .sticker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            transform: translate(-50%, -50%);
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map-container">
+        <img id="map" src="/static/map.jpg" style="max-width: 800px;">
+    </div>
+
+    <script>
+        const mapContainer = document.getElementById('map-container');
+        const scaleX = 0.301;
+        const scaleY = 0.302;
+        const offsetX = 18;
+        const offsetY = 15;
+        let planets = {};
+
+        fetch('/static/planets.json')
+            .then(response => response.json())
+            .then(data => {
+                planets = data;
+            });
+
+        mapContainer.onclick = function(e) {
+            // Remove any existing selection boxes
+            const existingBox = document.querySelector('.sticker-selection-box');
+            if (existingBox) existingBox.remove();
+
+            const rect = mapContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const closestPlanet = findClosestPlanet(x, y);
+            
+            if (closestPlanet) {
+                createStickerSelectionBox(closestPlanet);
+            }
+        };
+
+        function findClosestPlanet(clickX, clickY, maxDistance = 50) {
+            for (const [name, planet] of Object.entries(planets)) {
+                const scaledX = planet.x * scaleX + offsetX;
+                const scaledY = planet.y * scaleY + offsetY;
+                
+                const distance = Math.sqrt(
+                    Math.pow(clickX - scaledX, 2) + 
+                    Math.pow(clickY - scaledY, 2)
+                );
+                
+                if (distance <= maxDistance) {
+                    return { name, ...planet };
+                }
+            }
+            return null;
+        }
+
+        function createStickerSelectionBox(planet) {
+            const box = document.createElement('div');
+            box.className = 'sticker-selection-box';
+            box.style.position = 'absolute';
+            box.style.border = '1px solid black';
+            box.style.backgroundColor = 'white';
+            box.style.padding = '10px';
+            box.style.display = 'flex';
+            box.style.gap = '10px';
+
+            const scaledX = planet.x * scaleX + offsetX;
+            const scaledY = planet.y * scaleY + offsetY;
+
+            box.style.left = `${scaledX + 20}px`;
+            box.style.top = `${scaledY}px`;
+
+            const stickers = [
+                { name: 'neutral', path: '/static/stickers/neutral.png' },
+                { name: 'empire_base', path: '/static/stickers/empire_base.png' },
+                { name: 'empire_pres', path: '/static/stickers/empire_pres.png' },
+                { name: 'rebel_base', path: '/static/stickers/rebel_base.png' },
+                { name: 'rebel_pres', path: '/static/stickers/rebel_pres.png' }
+            ];
+
+            stickers.forEach(stickerType => {
+                const stickerOption = document.createElement('img');
+                stickerOption.src = stickerType.path;
+                stickerOption.style.width = '30px';
+                stickerOption.style.height = '30px';
+                stickerOption.style.cursor = 'pointer';
+                
+                stickerOption.onclick = () => {
+                    updatePlanetSticker(planet.name, stickerType.name);
+                    
+                    // Remove existing planet sticker
+                    const existingSticker = document.querySelector(`[data-planet="${planet.name}"]`);
+                    if (existingSticker) {
+                        existingSticker.remove();
+                    }
+
+                    // Add new sticker unless neutral
+                    if (stickerType.name !== 'neutral') {
+                        const newSticker = document.createElement('img');
+                        newSticker.src = stickerType.path;
+                        newSticker.className = 'planet-sticker';
+                        newSticker.dataset.planet = planet.name;
+                        newSticker.style.position = 'absolute';
+                        newSticker.style.width = '30px';
+                        newSticker.style.height = '30px';
+                        newSticker.style.left = `${scaledX - 15}px`;
+                        newSticker.style.top = `${scaledY - 15}px`;
+                        mapContainer.appendChild(newSticker);
+                    }
+
+                    box.remove();
+                };
+
+                box.appendChild(stickerOption);
+            });
+
+            mapContainer.appendChild(box);
+        }
+
+        function updatePlanetSticker(planetName, stickerType) {
+            fetch('/update_planet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    planet: planetName,
+                    status: stickerType
+                })
+            });
+        }
+    </script>
+</body>
+</html>

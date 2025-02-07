@@ -1,0 +1,152 @@
+{
+    "DANTOOINE": {
+        "status": "neutral",
+        "x": 728,
+        "y": 280
+    },
+    "DATHOMIR": {
+        "status": "neutral",
+        "x": 1430,
+        "y": 215
+    },
+    "FELUCIA": {
+        "status": "neutral",
+        "x": 2168,
+        "y": 165
+    },
+    "MYGEETO": {
+        "status": "neutral",
+        "x": 600,
+        "y": 540
+    },
+    "MON CALA": {
+        "status": "neutral",
+        "x": 2475,
+        "y": 945
+    },
+    "RAXUS PRIME": {
+        "status": "neutral",
+        "x": 2448,
+        "y": 380
+    },
+    "KESSEL": {
+        "status": "neutral",
+        "x": 2475,
+        "y": 1545
+    },
+    "NAL HUTTA": {
+        "status": "neutral",
+        "x": 2475,
+        "y": 1825
+    },
+    "NAR SHADDAA": {
+        "status": "neutral",
+        "x": 2450,
+        "y": 2360
+    },
+    "YAVIN": {
+        "status": "rebel base",
+        "x": 2110,
+        "y": 535
+    },
+    "ORD MANTELL": {
+        "status": "neutral",
+        "x": 710,
+        "y": 955
+    },
+    "MANDALORE": {
+        "status": "neutral",
+        "x": 1410,
+        "y": 870
+    },
+    "CONCORD DAWN": {
+        "status": "neutral",
+        "x": 1730,
+        "y": 745
+    },
+    "ATOLLON": {
+        "status": "neutral",
+        "x": 1610,
+        "y": 1140
+    },
+    "LOTHAL": {
+        "status": "neutral",
+        "x": 2178,
+        "y": 1088
+    },
+    "SALEUCAMI": {
+        "status": "neutral",
+        "x": 1780,
+        "y": 1550
+    },
+    "MONTROSS": {
+        "status": "neutral",
+        "x": 1360,
+        "y": 1730
+    },
+    "RING OF KAFRENE": {
+        "status": "neutral",
+        "x": 760,
+        "y": 2065
+    },
+    "RODIA": {
+        "status": "neutral",
+        "x": 1565,
+        "y": 2015
+    },
+    "ENDOR": {
+        "status": "neutral",
+        "x": 478,
+        "y": 2475
+    },
+    "SULLUST": {
+        "status": "rebel base",
+        "x": 1170,
+        "y": 2480
+    },
+    "TATOOINE": {
+        "status": "neutral",
+        "x": 1760,
+        "y": 2560
+    },
+    "GEONOSIS": {
+        "status": "neutral",
+        "x": 2390,
+        "y": 2650
+    },
+    "BESPIN": {
+        "status": "neutral",
+        "x": 710,
+        "y": 2930
+    },
+    "HOTH": {
+        "status": "neutral",
+        "x": 605,
+        "y": 3155
+    },
+    "DAGOBAH": {
+        "status": "empire base",
+        "x": 1323,
+        "y": 3035
+    },
+    "UTAPAU": {
+        "status": "neutral",
+        "x": 2008,
+        "y": 2990
+    },
+    "RYLOTH": {
+        "status": "neutral",
+        "x": 2455,
+        "y": 3070
+    },
+    "MUSTAFAR": {
+        "status": "neutral",
+        "x": 1410,
+        "y": 3400
+    },
+    "SMUGGLER'S RUN": {
+        "status": "empire base",
+        "x": 2350,
+        "y": 3355
+    }
+}
