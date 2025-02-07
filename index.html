@@ -30,10 +30,16 @@
         const offsetY = 15;
         let planets = {};
 
+        // Load initial stickers when page loads
         fetch('/static/planets.json')
             .then(response => response.json())
             .then(data => {
                 planets = data;
+                Object.entries(planets).forEach(([name, planet]) => {
+                    if (planet.status !== 'neutral') {
+                        displaySticker(name, planet);
+                    }
+                });
             });
 
         mapContainer.onclick = function(e) {
@@ -53,6 +59,33 @@
                 createStickerSelectionBox(closestPlanet);
             }
         };
+
+        function displaySticker(planetName, planet) {
+            const scaledX = planet.x * scaleX + 3.2;
+            const scaledY = planet.y * scaleY;
+            
+            const stickerPath = getStickerPath(planet.status);
+            const sticker = document.createElement('img');
+            sticker.src = stickerPath;
+            sticker.className = 'planet-sticker';
+            sticker.dataset.planet = planetName;
+            sticker.style.position = 'absolute';
+            sticker.style.width = '30px';
+            sticker.style.height = '30px';
+            sticker.style.left = `${scaledX}px`;
+            sticker.style.top = `${scaledY}px`;
+            mapContainer.appendChild(sticker);
+        }
+
+        function getStickerPath(status) {
+            const paths = {
+                'rebel presence': '/static/stickers/rebel_pres.png',
+                'empire presence': '/static/stickers/empire_pres.png',
+                'rebel base': '/static/stickers/rebel_base.png',
+                'empire base': '/static/stickers/empire_base.png'
+            };
+            return paths[status];
+        }
 
         function findClosestPlanet(clickX, clickY, maxDistance = 50) {
             for (const [name, planet] of Object.entries(planets)) {
@@ -132,7 +165,7 @@
                 stickerOption.style.cursor = 'pointer';
 
                 stickerOption.onclick = () => {
-                    updatePlanetSticker(planet.name, stickerType.name.toLowerCase().replace(" ", "_"));
+                    updatePlanetSticker(planet.name, stickerType.name.toLowerCase());
 
                     const existingSticker = document.querySelector(`[data-planet="${planet.name}"]`);
                     if (existingSticker) {
@@ -170,16 +203,19 @@
             mapContainer.appendChild(box);
         }
 
-        function updatePlanetSticker(planetName, stickerType) {
+        function updatePlanetSticker(planetName, status) {
+            const data = {
+                planet: planetName,
+                status: status
+            };
+            console.log('Sending data:', data);  // Debug log
+            
             fetch('/update_planet', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    planet: planetName,
-                    status: stickerType
-                })
+                body: JSON.stringify(data)
             });
         }
     </script>

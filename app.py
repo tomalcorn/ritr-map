@@ -20,5 +20,21 @@ def add_sticker():
 def get_stickers():
     return jsonify(sticker_positions)
 
+@app.route('/update_planet', methods=['POST'])
+def update_planet():
+    data = request.json
+    print('Received data:', data)  # Debug log
+    data = request.json
+    with open('static/planets.json', 'r') as f:
+        planets = json.load(f)
+    
+    if data['planet'] in planets:
+        planets[data['planet']]['status'] = data['status']
+    
+    with open('static/planets.json', 'w') as f:
+        json.dump(planets, f, indent=2)
+    
+    return jsonify({"success": True})
+
 if __name__ == '__main__':
     app.run(debug=True)
