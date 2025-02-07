@@ -1,6 +1,6 @@
 {
   "DANTOOINE": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 728,
     "y": 280,
     "right": false,
@@ -21,7 +21,7 @@
     "bottom": false
   },
   "MYGEETO": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 600,
     "y": 540,
     "right": false,
@@ -154,7 +154,7 @@
     "bottom": false
   },
   "GEONOSIS": {
-    "status": "neutral",
+    "status": "empire presence",
     "x": 2390,
     "y": 2650,
     "right": true,
@@ -182,7 +182,7 @@
     "bottom": false
   },
   "UTAPAU": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2008,
     "y": 2990,
     "right": true,
@@ -203,7 +203,7 @@
     "bottom": true
   },
   "SMUGGLER'S RUN": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 2350,
     "y": 3355,
     "right": true,

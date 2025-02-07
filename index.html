@@ -61,8 +61,8 @@
         };
 
         function displaySticker(planetName, planet) {
-            const scaledX = planet.x * scaleX + offsetX;
-            const scaledY = planet.y * scaleY + offsetY;
+            const scaledX = planet.x * scaleX + 3.2;
+            const scaledY = planet.y * scaleY;
             
             const stickerPath = getStickerPath(planet.status);
             const sticker = document.createElement('img');
