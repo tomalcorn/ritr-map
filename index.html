@@ -68,6 +68,16 @@
         <div id="sidebar">
             <button id="clear-stickers-btn">Clear Stickers</button>
             <button id="lock-map-btn">Lock Map</button>
+            <div id="stats-container">
+                <h3>Stats</h3>
+                <table id="stats-table">
+                    <tr><th>Type</th><th>Count</th></tr>
+                    <tr><td>Empire Presence</td><td id="empire-presence-count">0</td></tr>
+                    <tr><td>Empire Base</td><td id="empire-base-count">0</td></tr>
+                    <tr><td>Rebel Presence</td><td id="rebel-presence-count">0</td></tr>
+                    <tr><td>Rebel Base</td><td id="rebel-base-count">0</td></tr>
+                </table>
+            </div>
         </div>
 
     <script>
@@ -128,6 +138,7 @@
                     if (planet.status !== 'neutral') {
                         displaySticker(name, planet);
                     }
+                    updateStats();
                 });
             });
 
@@ -276,6 +287,8 @@
 
                     box.remove();
                     glowCircle.remove(); // Remove glow when selection box closes
+
+                    updateStats();
                 };
 
                 const stickerLabel = document.createElement('div');
@@ -308,6 +321,7 @@
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
                 console.log(`Updated ${planetName} successfully`);
+
                 return await response.json();
             } catch (error) {
                 console.error(`Failed to update ${planetName}:`, error);
@@ -335,6 +349,8 @@
                 // Add a small delay between planets to prevent overwhelming the server
                 await delay(100); // 100ms delay between planets
                 
+                updateStats();
+
             } catch (error) {
                 console.error(`Failed to clear ${planetName}:`, error);
                 // Continue with other planets even if one fails
@@ -346,6 +362,28 @@
             console.error('Error in clear stickers operation:', error);
         }
         });
+        
+        function updateStats() {
+            let counts = {
+                'empire presence': 0,
+                'empire base': 0,
+                'rebel presence': 0,
+                'rebel base': 0
+            };
+
+            // Count stickers by their status
+            Object.values(planets).forEach(planet => {
+                if (counts.hasOwnProperty(planet.status)) {
+                    counts[planet.status]++;
+                }
+            });
+
+            // Update the table
+            document.getElementById('empire-presence-count').textContent = counts['empire presence'];
+            document.getElementById('empire-base-count').textContent = counts['empire base'];
+            document.getElementById('rebel-presence-count').textContent = counts['rebel presence'];
+            document.getElementById('rebel-base-count').textContent = counts['rebel base'];
+        }
     </script>
 </body>
 </html>

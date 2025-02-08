@@ -147,7 +147,7 @@
     "bottom": false
   },
   "TATOOINE": {
-    "status": "neutral",
+    "status": "empire presence",
     "x": 1760,
     "y": 2560,
     "right": false,
