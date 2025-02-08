@@ -22,7 +22,7 @@
             padding: 10px;
             border: 1px solid black;
             background-color: #f4f4f4;
-            min-width: 200px; /* Sidebar width */
+            min-width: 240px; /* Sidebar width */
         }
 
         #clear-stickers-btn {
@@ -31,6 +31,17 @@
             font-size: 16px;
             cursor: pointer;
             background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #lock-map-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: grey;
             color: white;
             border: none;
             border-radius: 5px;
@@ -56,18 +67,57 @@
         <!-- Sidebar -->
         <div id="sidebar">
             <button id="clear-stickers-btn">Clear Stickers</button>
+            <button id="lock-map-btn">Lock Map</button>
         </div>
 
     <script>
-        document.getElementById('clear-stickers-btn').addEventListener('click', () => {
-            document.querySelectorAll('.planet-sticker').forEach(sticker => sticker.remove());
-        });
+        
+        const lockButton = document.getElementById('lock-map-btn');
         const mapContainer = document.getElementById('map-container');
         const scaleX = 0.339;
         const scaleY = 0.3396;
         const offsetX = 20.15;
         const offsetY = 16.875;
         let planets = {};
+
+        let isLocked = false; // Default: map is interactive
+
+        lockButton.addEventListener('click', () => {
+            isLocked = !isLocked; // Toggle state
+
+            if (isLocked) {
+                mapContainer.style.pointerEvents = 'none'; // Disable interactions
+                lockButton.textContent = 'Unlock Map';
+            } else {
+                mapContainer.style.pointerEvents = 'auto'; // Enable interactions
+                lockButton.textContent = ' Lock Map ';
+            }
+
+            // Save the lock state to the backend
+            saveLockState(isLocked);
+        });
+
+        // Function to send lock state to the backend
+        function saveLockState(locked) {
+            fetch('/update-lock', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ locked })
+            });
+        }
+
+        // Function to load lock state on page load
+        async function loadLockState() {
+            const response = await fetch('/get-lock');
+            const data = await response.json();
+            isLocked = data.locked;
+
+            mapContainer.style.pointerEvents = isLocked ? 'none' : 'auto';
+            lockButton.textContent = isLocked ? 'Unlock Map' : 'Lock Map';
+        }
+
+        // Load state when the page loads
+        window.addEventListener('load', loadLockState);
 
         // Load initial stickers when page loads
         fetch('/static/planets.json')

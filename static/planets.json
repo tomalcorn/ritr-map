@@ -35,7 +35,7 @@
     "bottom": false
   },
   "RAXUS PRIME": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 2448,
     "y": 380,
     "right": true,
@@ -63,7 +63,7 @@
     "bottom": false
   },
   "YAVIN": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2110,
     "y": 535,
     "right": true,
@@ -98,7 +98,7 @@
     "bottom": false
   },
   "LOTHAL": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 2178,
     "y": 1088,
     "right": true,
@@ -133,7 +133,7 @@
     "bottom": false
   },
   "ENDOR": {
-    "status": "empire presence",
+    "status": "neutral",
     "x": 478,
     "y": 2475,
     "right": false,
@@ -168,7 +168,7 @@
     "bottom": false
   },
   "HOTH": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 605,
     "y": 3155,
     "right": false,
@@ -189,7 +189,7 @@
     "bottom": false
   },
   "RYLOTH": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2455,
     "y": 3070,
     "right": true,
@@ -203,7 +203,7 @@
     "bottom": true
   },
   "SMUGGLER'S RUN": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2350,
     "y": 3355,
     "right": true,
