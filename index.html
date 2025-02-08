@@ -130,6 +130,12 @@
                     }
                 });
             });
+        
+        // TODO: Fix so clearing stickers also updates backend
+        document.getElementById('clear-stickers-btn').addEventListener('click', () => {
+        // Remove all sticker elements from the DOM
+        document.querySelectorAll('.planet-sticker').forEach(sticker => sticker.remove());
+        })
 
         mapContainer.onclick = function(e) {
             // Remove any existing selection boxes or circles
