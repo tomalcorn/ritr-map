@@ -1,8 +1,8 @@
 {
   "DANTOOINE": {
     "status": "neutral",
-    "x": 728,
-    "y": 280,
+    "x": 724,
+    "y": 276,
     "right": false,
     "bottom": false
   },
@@ -21,21 +21,21 @@
     "bottom": false
   },
   "MYGEETO": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 600,
     "y": 540,
     "right": false,
     "bottom": false
   },
   "MON CALA": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2475,
     "y": 945,
     "right": true,
     "bottom": false
   },
   "RAXUS PRIME": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 2448,
     "y": 380,
     "right": true,
@@ -63,7 +63,7 @@
     "bottom": false
   },
   "YAVIN": {
-    "status": "rebel presence",
+    "status": "neutral",
     "x": 2110,
     "y": 535,
     "right": true,
@@ -98,7 +98,7 @@
     "bottom": false
   },
   "LOTHAL": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 2178,
     "y": 1088,
     "right": true,
@@ -196,7 +196,7 @@
     "bottom": false
   },
   "MUSTAFAR": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1410,
     "y": 3400,
     "right": false,

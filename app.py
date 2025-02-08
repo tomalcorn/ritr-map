@@ -24,7 +24,6 @@ def get_stickers():
 def update_planet():
     data = request.json
     print('Received data:', data)  # Debug log
-    data = request.json
     with open('static/planets.json', 'r') as f:
         planets = json.load(f)
     
@@ -34,6 +33,7 @@ def update_planet():
     with open('static/planets.json', 'w') as f:
         json.dump(planets, f, indent=2)
     
+    print('Written to file.')
     return jsonify({"success": True})
 
 # Store lock state (default: unlocked)

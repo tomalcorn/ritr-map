@@ -74,7 +74,7 @@
         
         const lockButton = document.getElementById('lock-map-btn');
         const mapContainer = document.getElementById('map-container');
-        const scaleX = 0.339;
+        const scaleX = 0.3386;
         const scaleY = 0.3396;
         const offsetX = 20.15;
         const offsetY = 16.875;
@@ -130,12 +130,6 @@
                     }
                 });
             });
-        
-        // TODO: Fix so clearing stickers also updates backend
-        document.getElementById('clear-stickers-btn').addEventListener('click', () => {
-        // Remove all sticker elements from the DOM
-        document.querySelectorAll('.planet-sticker').forEach(sticker => sticker.remove());
-        })
 
         mapContainer.onclick = function(e) {
             // Remove any existing selection boxes or circles
@@ -298,21 +292,81 @@
             mapContainer.appendChild(box);
         }
 
-        function updatePlanetSticker(planetName, status) {
-            const data = {
-                planet: planetName,
-                status: status
-            };
-            console.log('Sending data:', data);  // Debug log
+
+        // Function to wait between requests
+        const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+        // Update a single planet with retry logic
+        async function updatePlanetSticker(planetName, status) {
+            const maxRetries = 3;
+            const retryDelay = 500; // 500ms between retries
             
-            fetch('/update_planet', {
-                method: 'POST',
-                headers: {
+            for (let attempt = 1; attempt <= maxRetries; attempt++) {
+                try {
+                const data = {
+                    planet: planetName,
+                    status: status
+                };
+                console.log(`Updating planet ${planetName} (attempt ${attempt}/${maxRetries})`);
+                
+                const response = await fetch('/update_planet', {
+                    method: 'POST',
+                    headers: {
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                console.log(`Successfully updated ${planetName}`);
+                return result;
+                } catch (error) {
+                console.error(`Attempt ${attempt} failed for ${planetName}:`, error);
+                if (attempt < maxRetries) {
+                    await delay(retryDelay);
+                } else {
+                    throw error;
+                }
+                }
+            }
         }
+
+        // Clear all stickers and update backend
+        document.getElementById('clear-stickers-btn').addEventListener('click', async () => {
+        try {
+            // Remove all sticker elements from the DOM
+            document.querySelectorAll('.planet-sticker').forEach(sticker => sticker.remove());
+            
+            const planetNames = Object.keys(planets);
+            console.log(`Starting to clear ${planetNames.length} planets...`);
+            
+            // Process planets one at a time with a small delay between each
+            for (const planetName of planetNames) {
+            try {
+                // Update local state
+                planets[planetName].status = 'neutral';
+                
+                // Send update to backend and wait for completion
+                await updatePlanetSticker(planetName, 'neutral');
+                
+                // Add a small delay between planets to prevent overwhelming the server
+                await delay(100); // 100ms delay between planets
+                
+            } catch (error) {
+                console.error(`Failed to clear ${planetName}:`, error);
+                // Continue with other planets even if one fails
+            }
+            }
+            
+            console.log('Finished clearing all stickers');
+        } catch (error) {
+            console.error('Error in clear stickers operation:', error);
+        }
+        });
     </script>
 </body>
 </html>
