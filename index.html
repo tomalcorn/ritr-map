@@ -298,40 +298,19 @@
 
         // Update a single planet with retry logic
         async function updatePlanetSticker(planetName, status) {
-            const maxRetries = 3;
-            const retryDelay = 500; // 500ms between retries
-            
-            for (let attempt = 1; attempt <= maxRetries; attempt++) {
-                try {
-                const data = {
-                    planet: planetName,
-                    status: status
-                };
-                console.log(`Updating planet ${planetName} (attempt ${attempt}/${maxRetries})`);
-                
+            try {
                 const response = await fetch('/update_planet', {
                     method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ planet: planetName, status })
                 });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const result = await response.json();
-                console.log(`Successfully updated ${planetName}`);
-                return result;
-                } catch (error) {
-                console.error(`Attempt ${attempt} failed for ${planetName}:`, error);
-                if (attempt < maxRetries) {
-                    await delay(retryDelay);
-                } else {
-                    throw error;
-                }
-                }
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                console.log(`Updated ${planetName} successfully`);
+                return await response.json();
+            } catch (error) {
+                console.error(`Failed to update ${planetName}:`, error);
             }
         }
 
