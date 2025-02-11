@@ -28,14 +28,14 @@
     "bottom": false
   },
   "MON CALA": {
-    "status": "neutral",
+    "status": "rebel presence",
     "x": 2475,
     "y": 945,
     "right": true,
     "bottom": false
   },
   "RAXUS PRIME": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2448,
     "y": 380,
     "right": true,
@@ -63,7 +63,7 @@
     "bottom": false
   },
   "YAVIN": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2110,
     "y": 535,
     "right": true,
@@ -84,7 +84,7 @@
     "bottom": false
   },
   "CONCORD DAWN": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 1730,
     "y": 745,
     "right": false,
