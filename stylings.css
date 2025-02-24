@@ -1,0 +1,47 @@
+#container {
+    display: flex;
+}
+#map-container {
+    position: relative;
+    display: inline-block;
+}
+#page-title {
+    font-family: "Gill Sans", sans-serif; /* ✅ Fixed */
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+#sidebar {
+    display: inline-block;
+    margin-left: 20px; /* Space between map and sidebar */
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #f4f4f4;
+    min-width: 240px; /* Sidebar width */
+}
+
+#clear-stickers-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+#lock-map-btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#clear-stickers-btn:hover {
+    background-color: darkred;
+}
