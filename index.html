@@ -33,15 +33,14 @@
         </div>
 
     <script>
-        
-        const lockButton = document.getElementById('lock-map-btn');
-        const mapContainer = document.getElementById('map-container');
         const scaleX = 0.3386;
         const scaleY = 0.3396;
         const offsetX = 20.15;
         const offsetY = 16.875;
         let planets = {};
-
+        
+        const lockButton = document.getElementById('lock-map-btn');
+        const mapContainer = document.getElementById('map-container');
         let isLocked = false; // Default: map is interactive
 
         lockButton.addEventListener('click', () => {
