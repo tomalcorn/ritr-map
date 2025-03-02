@@ -111,6 +111,9 @@ function createStickerSelectionBox(planet) {
         stickerOption.onclick = () => {
             updatePlanetSticker(planet.name, stickerType.name.toLowerCase());
 
+            planets[planet.name].status = stickerType.name.toLowerCase(); 
+            
+
             const existingSticker = document.querySelector(`[data-planet="${planet.name}"]`);
             if (existingSticker) {
                 existingSticker.remove();

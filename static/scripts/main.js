@@ -27,4 +27,5 @@ mapContainer.onclick = function(e) {
     if (closestPlanet) {
         createStickerSelectionBox(closestPlanet);
     }
+
 };
