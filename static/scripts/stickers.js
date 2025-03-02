@@ -112,7 +112,7 @@ function createStickerSelectionBox(planet) {
             updatePlanetSticker(planet.name, stickerType.name.toLowerCase());
 
             planets[planet.name].status = stickerType.name.toLowerCase(); 
-            
+
 
             const existingSticker = document.querySelector(`[data-planet="${planet.name}"]`);
             if (existingSticker) {
@@ -183,20 +183,22 @@ document.getElementById('clear-stickers-btn').addEventListener('click', async ()
         const planetNames = Object.keys(planets);
         console.log(`Starting to clear ${planetNames.length} planets...`);
 
-        // Process planets one at a time with a small delay between each
+        // First, update all local state immediately
+        for (const planetName of planetNames) {
+            planets[planetName].status = 'neutral';
+        }
+        
+        // Update stats display immediately after local updates
+        updateStats();
+        
+        // Then, send updates to backend with delays
         for (const planetName of planetNames) {
             try {
-                // Update local state
-                planets[planetName].status = 'neutral';
-
                 // Send update to backend and wait for completion
                 await updatePlanetSticker(planetName, 'neutral');
-
+                
                 // Add a small delay between planets to prevent overwhelming the server
                 await delay(100); // 100ms delay between planets
-
-                updateStats();
-
             } catch (error) {
                 console.error(`Failed to clear ${planetName}:`, error);
                 // Continue with other planets even if one fails
