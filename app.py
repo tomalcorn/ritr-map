@@ -33,7 +33,6 @@ def update_planet():
     with open('static/planets.json', 'w') as f:
         json.dump(planets, f, indent=2)
     
-    print('Written to file.')
     return jsonify({"success": True})
 
 # Store lock state (default: unlocked)
