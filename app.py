@@ -24,7 +24,6 @@ def get_stickers():
 def update_planet():
     data = request.json
     print('Received data:', data)  # Debug log
-    data = request.json
     with open('static/planets.json', 'r') as f:
         planets = json.load(f)
     
@@ -35,6 +34,20 @@ def update_planet():
         json.dump(planets, f, indent=2)
     
     return jsonify({"success": True})
+
+# Store lock state (default: unlocked)
+lock_state = {"locked": False}
+
+@app.route('/update-lock', methods=['POST'])
+def update_lock():
+    global lock_state
+    data = request.json
+    lock_state["locked"] = data.get("locked", False)
+    return jsonify(lock_state)
+
+@app.route('/get-lock', methods=['GET'])
+def get_lock():
+    return jsonify(lock_state)
 
 if __name__ == '__main__':
     app.run(debug=True)

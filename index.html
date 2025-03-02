@@ -2,224 +2,41 @@
 <html>
 <head>
     <title>RITR Interactive Map</title>
-    <style>
-        #map-container {
-            position: relative;
-            display: inline-block;
-        }
-        #page-title {
-            font-family: "Gill Sans", sans-serif; /* ✅ Fixed */
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/stylings.css">
 </head>
 <body>
     <h1 id="page-title">
         Star Wars Armada: Rebellion in the Rim <br> Interactive Map
     </h1>
     
-    <div id="map-container">
-        <img id="map" src="/static/map.jpg" style="max-width: 800px;">
+    <!-- Parent Flex Container -->
+    <div id="container">
+        <!-- Map Container -->
+        <div id="map-container">
+            <img id="map" src="/static/map.jpg" style="max-width: 900px;">
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <button id="clear-stickers-btn">Clear Stickers</button>
+            <button id="lock-map-btn">Lock Map</button>
+            <div id="stats-container">
+                <h3>Stats</h3>
+                <table id="stats-table">
+                    <tr><th>Type</th><th>Count</th></tr>
+                    <tr><td>Empire Presence</td><td id="empire-presence-count">0</td></tr>
+                    <tr><td>Empire Base</td><td id="empire-base-count">0</td></tr>
+                    <tr><td>Rebel Presence</td><td id="rebel-presence-count">0</td></tr>
+                    <tr><td>Rebel Base</td><td id="rebel-base-count">0</td></tr>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <script>
-        const mapContainer = document.getElementById('map-container');
-        const scaleX = 0.301;
-        const scaleY = 0.302;
-        const offsetX = 18;
-        const offsetY = 15;
-        let planets = {};
-
-        // Load initial stickers when page loads
-        fetch('/static/planets.json')
-            .then(response => response.json())
-            .then(data => {
-                planets = data;
-                Object.entries(planets).forEach(([name, planet]) => {
-                    if (planet.status !== 'neutral') {
-                        displaySticker(name, planet);
-                    }
-                });
-            });
-
-        mapContainer.onclick = function(e) {
-            // Remove any existing selection boxes or circles
-            const existingBox = document.querySelector('.sticker-selection-box');
-            if (existingBox) existingBox.remove();
-            const existingCircles = document.querySelectorAll('.glow-circle');
-            existingCircles.forEach(circle => circle.remove());
-
-            const rect = mapContainer.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const closestPlanet = findClosestPlanet(x, y);
-            
-            if (closestPlanet) {
-                createStickerSelectionBox(closestPlanet);
-            }
-        };
-
-        function displaySticker(planetName, planet) {
-            const scaledX = planet.x * scaleX + 3.2;
-            const scaledY = planet.y * scaleY;
-            
-            const stickerPath = getStickerPath(planet.status);
-            const sticker = document.createElement('img');
-            sticker.src = stickerPath;
-            sticker.className = 'planet-sticker';
-            sticker.dataset.planet = planetName;
-            sticker.style.position = 'absolute';
-            sticker.style.width = '30px';
-            sticker.style.height = '30px';
-            sticker.style.left = `${scaledX}px`;
-            sticker.style.top = `${scaledY}px`;
-            mapContainer.appendChild(sticker);
-        }
-
-        function getStickerPath(status) {
-            const paths = {
-                'rebel presence': '/static/stickers/rebel_pres.png',
-                'empire presence': '/static/stickers/empire_pres.png',
-                'rebel base': '/static/stickers/rebel_base.png',
-                'empire base': '/static/stickers/empire_base.png'
-            };
-            return paths[status];
-        }
-
-        function findClosestPlanet(clickX, clickY, maxDistance = 50) {
-            for (const [name, planet] of Object.entries(planets)) {
-                const scaledX = planet.x * scaleX + offsetX;
-                const scaledY = planet.y * scaleY + offsetY;
-                
-                const distance = Math.sqrt(
-                    Math.pow(clickX - scaledX, 2) + 
-                    Math.pow(clickY - scaledY, 2)
-                );
-                
-                if (distance <= maxDistance) {
-                    return { name, ...planet };
-                }
-            }
-            return null;
-        }
-
-        function createStickerSelectionBox(planet) {
-            const box = document.createElement('div');
-            box.className = 'sticker-selection-box';
-            box.style.position = 'absolute';
-            box.style.border = '1px solid black';
-            box.style.backgroundColor = 'white';
-            box.style.padding = '10px';
-            box.style.display = 'flex';
-            box.style.gap = '10px';
-
-            const scaledX = planet.x * scaleX + offsetX;
-            const scaledY = planet.y * scaleY + offsetY;
-
-            // Position box based on right/bottom flags
-            const boxWidth = 160; // Approximate width of selection box
-            const boxHeight = 50; // Approximate height of selection box
-            const spacing = 20; // Space between box and planet
-
-            box.style.left = planet.right ? 
-            `${scaledX - boxWidth - spacing}px` : 
-            `${scaledX + spacing}px`;
-            box.style.top = planet.bottom ? 
-            `${scaledY - boxHeight - spacing - 30}px` : 
-            `${scaledY + spacing}px`;
-
-            // Create a glowing circle around the planet
-            const glowCircle = document.createElement('div');
-            glowCircle.className = 'glow-circle';
-            glowCircle.style.position = 'absolute';
-            glowCircle.style.width = '30px';   // Adjust size as needed
-            glowCircle.style.height = '30px';
-            glowCircle.style.borderRadius = '50%';
-            glowCircle.style.border = '2px solid yellow';
-            glowCircle.style.boxShadow = '0px 0px 15px 5px yellow';
-            glowCircle.style.left = `${scaledX - 17}px`;  // Centered around planet
-            glowCircle.style.top = `${scaledY - 16}px`;
-            
-            mapContainer.appendChild(glowCircle);
-
-            const stickers = [
-                { name: 'Neutral', path: '/static/stickers/neutral.png' },
-                { name: 'Empire Base', path: '/static/stickers/empire_base.png' },
-                { name: 'Empire Presence', path: '/static/stickers/empire_pres.png' },
-                { name: 'Rebel Base', path: '/static/stickers/rebel_base.png' },
-                { name: 'Rebel Presence', path: '/static/stickers/rebel_pres.png' }
-            ];
-
-            stickers.forEach(stickerType => {
-                const stickerWrapper = document.createElement('div');
-                stickerWrapper.style.display = 'flex';
-                stickerWrapper.style.flexDirection = 'column';
-                stickerWrapper.style.alignItems = 'center';
-                stickerWrapper.style.width = '30px';  // Fixed width to maintain uniform layout
-
-                const stickerOption = document.createElement('img');
-                stickerOption.src = stickerType.path;
-                stickerOption.style.width = '30px';
-                stickerOption.style.height = '30px';
-                stickerOption.style.cursor = 'pointer';
-
-                stickerOption.onclick = () => {
-                    updatePlanetSticker(planet.name, stickerType.name.toLowerCase());
-
-                    const existingSticker = document.querySelector(`[data-planet="${planet.name}"]`);
-                    if (existingSticker) {
-                        existingSticker.remove();
-                    }
-
-                    if (stickerType.name.toLowerCase() !== 'neutral') {
-                        const newSticker = document.createElement('img');
-                        newSticker.src = stickerType.path;
-                        newSticker.className = 'planet-sticker';
-                        newSticker.dataset.planet = planet.name;
-                        newSticker.style.position = 'absolute';
-                        newSticker.style.width = '30px';
-                        newSticker.style.height = '30px';
-                        newSticker.style.left = `${scaledX - 15}px`;
-                        newSticker.style.top = `${scaledY - 15}px`;
-                        mapContainer.appendChild(newSticker);
-                    }
-
-                    box.remove();
-                    glowCircle.remove(); // Remove glow when selection box closes
-                };
-
-                const stickerLabel = document.createElement('div');
-                stickerLabel.textContent = stickerType.name;
-                stickerLabel.style.fontSize = '10px';
-                stickerLabel.style.textAlign = 'center';
-                stickerLabel.style.fontFamily = '"Gill Sans", sans-serif'; // change font here
-
-                stickerWrapper.appendChild(stickerOption);
-                stickerWrapper.appendChild(stickerLabel);
-                box.appendChild(stickerWrapper);
-            });
-
-            mapContainer.appendChild(box);
-        }
-
-        function updatePlanetSticker(planetName, status) {
-            const data = {
-                planet: planetName,
-                status: status
-            };
-            console.log('Sending data:', data);  // Debug log
-            
-            fetch('/update_planet', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-        }
-    </script>
+    <!-- Load JavaScript files -->
+    <script src="/static/scripts/lockState.js"></script>
+    <script src="/static/scripts/stickers.js"></script>
+    <script src="/static/scripts/stats.js"></script>
+    <script src="/static/scripts/main.js"></script>
 </body>
 </html>
