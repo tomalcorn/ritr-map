@@ -24,6 +24,8 @@ function showPopup(diplomatType) {
         button.addEventListener('click', () => {
             // Handle the button click
             console.log(`Placing ${diplomatType} token in sector ${i}`);
+            updateDiplomats(diplomatType, i);
+            displayDiplomats();
             document.body.removeChild(popup);
             document.body.removeChild(overlay);
         });
@@ -33,6 +35,45 @@ function showPopup(diplomatType) {
     // Append the overlay and popup to the body
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
+}
+
+// Function to display diplomats on the map
+function displayDiplomats() {
+    Object.entries(sectors).forEach(([sector, data]) => {
+        if (data.empire) {
+            displayDiplomat('empire', sector);
+        }
+        if (data.rebel) {
+            displayDiplomat('rebel', sector);
+        }
+    });
+}
+
+// Function to display a single diplomat on the map
+function displayDiplomat(diplomatType, sector) {
+    const sectorData = sectors[sector];
+    const img = document.createElement('img');
+    img.src = `static/stickers/${diplomatType}-diplomat.png`;
+    img.classList.add('diplomat-token');
+    img.style.left = `${sectorData.x}px`;
+    img.style.top = `${sectorData.y}px`;
+    document.getElementById('map').appendChild(img);
+}
+
+// Function to update sector_data.json on the backend
+function updateDiplomats(diplomatType, sector) {
+    sectors[sector][diplomatType] = true;
+    fetch('/update_sector_data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sectors)
+    }).then(response => {
+        if (!response.ok) {
+            console.error('Failed to update sector data');
+        }
+    });
 }
 
 // When rebel diplomat button clicked
@@ -49,3 +90,11 @@ document.getElementById('empire-diplomats').addEventListener('click', () => {
 document.getElementById('clear-diplomats').addEventListener('click', () => {
     // Clear the diplomats logic here
 })
+
+// Load initial diplomat tokens when page loads
+fetch('static/sector_data.json')
+    .then(response => response.json())
+    .then(sectorData => {
+        sectors = sectorData;
+        displayDiplomats();
+    });
