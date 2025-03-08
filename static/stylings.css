@@ -95,3 +95,48 @@
   #stats-table tr:hover {
     background-color: #f1f1f1;
   }
+
+  #rebel-diplomats {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: lightcoral;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    }
+    #rebel-diplomats:hover {
+        background-color: white;
+    }
+    #empire-diplomats {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: grey;
+        color: black;
+        border: none;
+        border-radius: 5px;
+    }
+    #empire-diplomats:hover {
+        background-color: lightgrey;
+    }
+    #clear-diplomats {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: red;
+        color: black;
+        border: none;
+        border-radius: 5px;
+    }
+    #clear-diplomats:hover {
+        background-color: orangered;
+    }
