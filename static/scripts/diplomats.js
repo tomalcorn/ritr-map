@@ -53,7 +53,7 @@ function displayDiplomats() {
 function displayDiplomat(diplomatType, sector) {
     const sectorData = sectors[sector];
     const img = document.createElement('img');
-    img.src = `static/stickers/${diplomatType}-diplomat.png`;
+    img.src = `static/stickers/${diplomatType}_dip.png`;
     img.classList.add('diplomat-token');
     img.style.left = `${sectorData.x}px`;
     img.style.top = `${sectorData.y}px`;
