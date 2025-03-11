@@ -1,5 +1,16 @@
 let sectors = {};
 
+// Load sector data when the page loads
+fetch('static/sector_data.json')
+    .then(response => response.json())
+    .then(data => {
+        sectors = data;
+        console.log('Sectors data loaded:', sectors); // Debugging statement
+    })
+    .catch(error => {
+        console.error('Failed to load sector data:', error);
+    });
+    
 // Function to display the popup
 function showPopup(diplomatType) {
     // Create the overlay
@@ -25,7 +36,7 @@ function showPopup(diplomatType) {
             // Handle the button click
             console.log(`Placing ${diplomatType} token in sector ${i}`);
             updateDiplomats(diplomatType, i);
-            displayDiplomats();
+            displayDiplomat(diplomatType, i);
             document.body.removeChild(popup);
             document.body.removeChild(overlay);
         });
@@ -37,21 +48,10 @@ function showPopup(diplomatType) {
     document.body.appendChild(popup);
 }
 
-// Function to display diplomats on the map
-function displayDiplomats() {
-    Object.entries(sectors).forEach(([sector, data]) => {
-        if (data.empire) {
-            displayDiplomat('empire', sector);
-        }
-        if (data.rebel) {
-            displayDiplomat('rebel', sector);
-        }
-    });
-}
-
 // Function to display a single diplomat on the map
 function displayDiplomat(diplomatType, sector) {
-    const sectorData = sectors[sector];
+    const faction = diplomatType.toLowerCase();
+    const sectorData = sectors[faction][sector];
     const img = document.createElement('img');
     img.src = `static/stickers/${diplomatType}_dip.png`;
     img.classList.add('diplomat-token');
@@ -61,19 +61,27 @@ function displayDiplomat(diplomatType, sector) {
 }
 
 // Function to update sector_data.json on the backend
-function updateDiplomats(diplomatType, sector) {
-    sectors[sector][diplomatType] = true;
-    fetch('/update_sector_data', {
+async function updateDiplomats(diplomatType, sector, status = "True") {
+    const faction = diplomatType.toLowerCase();
+    if (!sectors[faction] || !sectors[faction][sector]) {
+        console.error(`Sector data not found for ${faction} sector ${sector}`); // Debugging statement
+        return;
+    }
+    sectors[faction][sector].status = status;
+    const response = await fetch('/update_sector_data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(sectors)
-    }).then(response => {
-        if (!response.ok) {
-            console.error('Failed to update sector data');
-        }
+        body: JSON.stringify({
+            faction: faction,
+            sector: sector.toString(),
+            status: status
+        })
     });
+    if (!response.ok) {
+        console.error('Failed to update sector data');
+    }
 }
 
 // When rebel diplomat button clicked
@@ -87,14 +95,12 @@ document.getElementById('empire-diplomats').addEventListener('click', () => {
 })
 
 // When clear diplomats button clicked
-document.getElementById('clear-diplomats').addEventListener('click', () => {
-    // Clear the diplomats logic here
-})
-
-// Load initial diplomat tokens when page loads
-fetch('static/sector_data.json')
-    .then(response => response.json())
-    .then(sectorData => {
-        sectors = sectorData;
-        displayDiplomats();
-    });
+document.getElementById('clear-diplomats').addEventListener('click', async () => {
+    for (const faction in sectors) {
+        for (const sector in sectors[faction]) {
+            await updateDiplomats(faction, sector, "False");
+        }
+    }
+    // Remove all diplomat tokens from the map
+    document.querySelectorAll('.diplomat-token').forEach(token => token.remove());
+});

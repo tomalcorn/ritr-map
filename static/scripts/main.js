@@ -15,16 +15,14 @@ fetch('/static/planets.json')
 fetch('static/sector_data.json')
     .then(response => response.json())
     .then(sectorData => {
-        sectors = sectorData;
-        Object.entries(sectors).forEach(([sector, data]) => {
-            if (data.empire) {
-                displayDiplomat('empire', sector);
-            }
-            if (data.rebel) {
-                displayDiplomat('rebel', sector);
-            }
+        Object.entries(sectorData).forEach(([faction, sectors]) => {
+            Object.entries(sectors).forEach(([sector, data]) => {
+                if (data.status === "True") {
+                    displayDiplomat(faction, sector);
+                }
+            });
         });
-    })
+    });
 
 mapContainer.onclick = function(e) {
     // Remove any existing selection boxes or circles

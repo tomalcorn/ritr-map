@@ -14,7 +14,7 @@
     "bottom": false
   },
   "FELUCIA": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2168,
     "y": 165,
     "right": true,
@@ -63,7 +63,7 @@
     "bottom": false
   },
   "YAVIN": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2110,
     "y": 535,
     "right": true,
@@ -77,14 +77,14 @@
     "bottom": false
   },
   "MANDALORE": {
-    "status": "rebel presence",
+    "status": "neutral",
     "x": 1410,
     "y": 870,
     "right": false,
     "bottom": false
   },
   "CONCORD DAWN": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 1730,
     "y": 745,
     "right": false,
@@ -98,7 +98,7 @@
     "bottom": false
   },
   "LOTHAL": {
-    "status": "rebel presence",
+    "status": "neutral",
     "x": 2178,
     "y": 1088,
     "right": true,
@@ -140,7 +140,7 @@
     "bottom": false
   },
   "SULLUST": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 1170,
     "y": 2480,
     "right": false,
@@ -161,7 +161,7 @@
     "bottom": false
   },
   "BESPIN": {
-    "status": "empire presence",
+    "status": "neutral",
     "x": 710,
     "y": 2930,
     "right": false,
@@ -175,7 +175,7 @@
     "bottom": false
   },
   "DAGOBAH": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1323,
     "y": 3035,
     "right": false,
@@ -189,7 +189,7 @@
     "bottom": false
   },
   "RYLOTH": {
-    "status": "rebel presence",
+    "status": "neutral",
     "x": 2455,
     "y": 3070,
     "right": true,
@@ -203,7 +203,7 @@
     "bottom": true
   },
   "SMUGGLER'S RUN": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 2350,
     "y": 3355,
     "right": true,
