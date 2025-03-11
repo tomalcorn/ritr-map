@@ -52,12 +52,18 @@ function showPopup(diplomatType) {
 function displayDiplomat(diplomatType, sector) {
     const faction = diplomatType.toLowerCase();
     const sectorData = sectors[faction][sector];
-    const img = document.createElement('img');
-    img.src = `static/stickers/${diplomatType}_dip.png`;
-    img.classList.add('diplomat-token');
-    img.style.left = `${sectorData.x}px`;
-    img.style.top = `${sectorData.y}px`;
-    document.getElementById('map-container').appendChild(img);
+    
+    const scaledX = sectorData.x * scaleX + offsetX;
+    const scaledY = sectorData.y * scaleY + offsetY;
+    const dipSticker = document.createElement('img');
+    dipSticker.src = `static/stickers/${diplomatType}_dip.png`;
+    dipSticker.classList.add('diplomat-token');
+    dipSticker.style.position = 'absolute';
+    dipSticker.style.width = '35px';
+    dipSticker.style.height = '35px';
+    dipSticker.style.left = `${scaledX}px`;
+    dipSticker.style.top = `${scaledY}px`;
+    document.getElementById('map-container').appendChild(dipSticker);
 }
 
 // Function to update sector_data.json on the backend

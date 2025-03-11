@@ -1,54 +1,54 @@
 {
   "rebel": {
     "1": {
-      "status": "False",
+      "status": "True",
       "x": 790,
-      "y": 415
+      "y": 345
     },
     "2": {
-      "status": "False",
+      "status": "True",
       "x": 2230,
       "y": 630
     },
     "3": {
       "status": "True",
-      "x": 1740,
-      "y": 1920
+      "x": 1700,
+      "y": 1870
     },
     "4": {
       "status": "True",
-      "x": 1930,
+      "x": 1900,
       "y": 2640
     },
     "5": {
-      "status": "False",
+      "status": "True",
       "x": 780,
       "y": 3040
     }
   },
   "empire": {
     "1": {
-      "status": "False",
+      "status": "True",
       "x": 890,
-      "y": 415
+      "y": 345
     },
     "2": {
-      "status": "False",
+      "status": "True",
       "x": 2330,
       "y": 630
     },
     "3": {
-      "status": "False",
-      "x": 1740,
-      "y": 2020
+      "status": "True",
+      "x": 1700,
+      "y": 1970
     },
     "4": {
-      "status": "False",
-      "x": 1930,
+      "status": "True",
+      "x": 1900,
       "y": 2740
     },
     "5": {
-      "status": "False",
+      "status": "True",
       "x": 880,
       "y": 3040
     }
