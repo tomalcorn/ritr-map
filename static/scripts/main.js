@@ -1,3 +1,13 @@
+document.getElementById('download-map-btn').addEventListener('click', downloadMap);
+
+function downloadMap() {
+    const mapContainer = document.getElementById('map-container');
+    html2canvas(mapContainer).then(canvas => {
+        const base64image = canvas.toDataURL('image/png');
+        window.location.href = base64image;
+    });
+}
+
 // Load initial stickers when page loads
 fetch('/static/planets.json')
     .then(response => response.json())
