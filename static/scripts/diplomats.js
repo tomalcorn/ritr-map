@@ -57,7 +57,7 @@ function displayDiplomat(diplomatType, sector) {
     img.classList.add('diplomat-token');
     img.style.left = `${sectorData.x}px`;
     img.style.top = `${sectorData.y}px`;
-    document.getElementById('map').appendChild(img);
+    document.getElementById('map-container').appendChild(img);
 }
 
 // Function to update sector_data.json on the backend
