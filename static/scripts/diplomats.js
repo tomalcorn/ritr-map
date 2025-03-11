@@ -63,6 +63,11 @@ function displayDiplomat(diplomatType, sector) {
     dipSticker.style.height = '35px';
     dipSticker.style.left = `${scaledX}px`;
     dipSticker.style.top = `${scaledY}px`;
+
+    dipSticker.addEventListener('click', () => {
+        dipSticker.remove();
+        updateDiplomats(faction, sector, "False");
+    });
     document.getElementById('map-container').appendChild(dipSticker);
 }
 
