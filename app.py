@@ -35,6 +35,25 @@ def update_planet():
     
     return jsonify({"success": True})
 
+@app.route('/update_sector_data', methods=['POST'])
+def update_sector_data():
+    data = request.json
+    print('Received data:', data)  # Debug log
+    with open('static/sector_data.json', 'r') as f:
+        sectors = json.load(f)
+    
+    faction = data.get('faction')
+    sector = data.get('sector')
+    status = data.get('status')
+    
+    if faction in sectors and sector in sectors[faction]:
+        sectors[faction][sector]['status'] = status
+    
+    with open('static/sector_data.json', 'w') as f:
+        json.dump(sectors, f, indent=2)
+    
+    return jsonify({"success": True})
+
 # Store lock state (default: unlocked)
 lock_state = {"locked": False}
 

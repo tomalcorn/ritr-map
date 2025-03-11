@@ -11,6 +11,19 @@ fetch('/static/planets.json')
         });
     });
 
+// Load initial diplomat tokens when page loads
+fetch('static/sector_data.json')
+    .then(response => response.json())
+    .then(sectorData => {
+        Object.entries(sectorData).forEach(([faction, sectors]) => {
+            Object.entries(sectors).forEach(([sector, data]) => {
+                if (data.status === "True") {
+                    displayDiplomat(faction, sector);
+                }
+            });
+        });
+    });
+
 mapContainer.onclick = function(e) {
     // Remove any existing selection boxes or circles
     const existingBox = document.querySelector('.sticker-selection-box');

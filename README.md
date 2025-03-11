@@ -9,7 +9,7 @@ This repo contains the code for hosting a web app for a map editor for the board
 
 ### Sidebar
 
-- [ ] Fix stats table
+- [x] Fix stats table
 - [ ] Define and table for area control / diplomat tokens or something
 - [ ] Add function to add diplomats tokens
 
