@@ -1,17 +1,17 @@
 {
   "rebel": {
     "1": {
-      "status": "True",
+      "status": "False",
       "x": 790,
       "y": 345
     },
     "2": {
-      "status": "True",
+      "status": "False",
       "x": 2230,
       "y": 630
     },
     "3": {
-      "status": "True",
+      "status": "False",
       "x": 1700,
       "y": 1870
     },
@@ -21,7 +21,7 @@
       "y": 2640
     },
     "5": {
-      "status": "True",
+      "status": "False",
       "x": 780,
       "y": 3040
     }
@@ -48,7 +48,7 @@
       "y": 2740
     },
     "5": {
-      "status": "True",
+      "status": "False",
       "x": 880,
       "y": 3040
     }

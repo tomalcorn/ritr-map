@@ -14,7 +14,7 @@
     "bottom": false
   },
   "FELUCIA": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2168,
     "y": 165,
     "right": true,
@@ -84,7 +84,7 @@
     "bottom": false
   },
   "CONCORD DAWN": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1730,
     "y": 745,
     "right": false,
@@ -140,7 +140,7 @@
     "bottom": false
   },
   "SULLUST": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1170,
     "y": 2480,
     "right": false,

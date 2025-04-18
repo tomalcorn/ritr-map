@@ -19,6 +19,7 @@
     border: 1px solid black;
     background-color: #f4f4f4;
     min-width: 240px; /* Sidebar width */
+    position: relative;
 }
 
 #clear-stickers-btn {
@@ -181,4 +182,26 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Darken the background */
     z-index: 1000; /* Ensure it's below the popup */
+}
+
+/* Styles for the download button */
+#download-map-btn {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+#download-map-btn:hover {
+    background-color: royalblue;
+}
+#grey-divider {
+    border: 0; 
+    height: 1px; 
+    background: lightgray; 
+    margin: 20px 0;
 }

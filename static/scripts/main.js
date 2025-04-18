@@ -1,3 +1,15 @@
+document.getElementById('download-map-btn').addEventListener('click', returnMapCanvas);
+
+function returnMapCanvas() {
+    const mapDiv = document.getElementById('map-container');
+    html2canvas(mapDiv).then(function(canvas) {
+        const link = document.createElement('a');
+        link.download = 'current_map.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
+
 // Load initial stickers when page loads
 fetch('/static/planets.json')
     .then(response => response.json())
