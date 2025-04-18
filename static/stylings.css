@@ -191,13 +191,17 @@
     width: 100%;
     font-size: 16px;
     cursor: pointer;
-    background-color: green;
+    background-color: dodgerblue;
     color: white;
     border: none;
     border-radius: 5px;
-    margin-top: 60%;
-    margin-bottom: 20px; /* Adjust the value as needed for spacing */
 }
 #download-map-btn:hover {
-    background-color: darkgreen;
+    background-color: royalblue;
+}
+#grey-divider {
+    border: 0; 
+    height: 1px; 
+    background: lightgray; 
+    margin: 20px 0;
 }

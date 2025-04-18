@@ -14,7 +14,7 @@
     "bottom": false
   },
   "FELUCIA": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2168,
     "y": 165,
     "right": true,
@@ -28,7 +28,7 @@
     "bottom": false
   },
   "MON CALA": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2475,
     "y": 945,
     "right": true,
@@ -56,21 +56,21 @@
     "bottom": false
   },
   "NAR SHADDAA": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2450,
     "y": 2360,
     "right": true,
     "bottom": false
   },
   "YAVIN": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2110,
     "y": 535,
     "right": true,
     "bottom": false
   },
   "ORD MANTELL": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 710,
     "y": 955,
     "right": false,
@@ -84,21 +84,21 @@
     "bottom": false
   },
   "CONCORD DAWN": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1730,
     "y": 745,
     "right": false,
     "bottom": false
   },
   "ATOLLON": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1610,
     "y": 1140,
     "right": false,
     "bottom": false
   },
   "LOTHAL": {
-    "status": "rebel base",
+    "status": "neutral",
     "x": 2178,
     "y": 1088,
     "right": true,
@@ -126,7 +126,7 @@
     "bottom": false
   },
   "RODIA": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1565,
     "y": 2015,
     "right": false,
@@ -140,7 +140,7 @@
     "bottom": false
   },
   "SULLUST": {
-    "status": "empire base",
+    "status": "neutral",
     "x": 1170,
     "y": 2480,
     "right": false,

@@ -3,6 +3,7 @@
 <head>
     <title>RITR Interactive Map</title>
     <link rel="stylesheet" href="/static/stylings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <h1 id="page-title">
@@ -20,6 +21,12 @@
         <div id="sidebar">
             <button id="clear-stickers-btn">Clear Stickers</button>
             <button id="lock-map-btn">Lock Map</button>
+            <hr id=grey-divider>
+            <h3>Diplomats</h3>
+            <button id="rebel-diplomats">Rebel</button>
+            <button id="empire-diplomats">Empire</button>
+            <button id="clear-diplomats">Clear Diplomats</button>
+            <hr id=grey-divider>
             <div id="stats-container">
                 <h3>Stats</h3>
                 <table id="stats-table">
@@ -30,11 +37,8 @@
                     <tr><td>Rebel Base</td><td id="rebel-base-count">0</td></tr>
                 </table>
             </div>
-            <h3>Diplomats</h3>
-            <button id="rebel-diplomats">Rebel</button>
-            <button id="empire-diplomats">Empire</button>
-            <button id="clear-diplomats">Clear Diplomats</button>
-            <button id="download-map-btn">Download Map</button>
+            <hr id=grey-divider>
+            <button id="download-map-btn" class="btn"><i class="fa fa-download"></i> Download</button>
             </div>
         </div>
     </div>
