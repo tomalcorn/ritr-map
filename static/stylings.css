@@ -198,6 +198,6 @@
     margin-top: 60%;
     margin-bottom: 20px; /* Adjust the value as needed for spacing */
 }
-#download-btn:hover {
+#download-map-btn:hover {
     background-color: darkgreen;
 }

@@ -28,7 +28,7 @@
     "bottom": false
   },
   "MON CALA": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2475,
     "y": 945,
     "right": true,
@@ -63,14 +63,14 @@
     "bottom": false
   },
   "YAVIN": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2110,
     "y": 535,
     "right": true,
     "bottom": false
   },
   "ORD MANTELL": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 710,
     "y": 955,
     "right": false,
@@ -91,14 +91,14 @@
     "bottom": false
   },
   "ATOLLON": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 1610,
     "y": 1140,
     "right": false,
     "bottom": false
   },
   "LOTHAL": {
-    "status": "neutral",
+    "status": "rebel base",
     "x": 2178,
     "y": 1088,
     "right": true,
@@ -126,7 +126,7 @@
     "bottom": false
   },
   "RODIA": {
-    "status": "neutral",
+    "status": "empire base",
     "x": 1565,
     "y": 2015,
     "right": false,

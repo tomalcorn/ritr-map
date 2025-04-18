@@ -1,10 +1,12 @@
-document.getElementById('download-map-btn').addEventListener('click', downloadMap);
+document.getElementById('download-map-btn').addEventListener('click', returnMapCanvas);
 
-function downloadMap() {
-    const mapContainer = document.getElementById('map-container');
-    html2canvas(mapContainer).then(canvas => {
-        const base64image = canvas.toDataURL('image/png');
-        window.location.href = base64image;
+function returnMapCanvas() {
+    const mapDiv = document.getElementById('map-container');
+    html2canvas(mapDiv).then(function(canvas) {
+        const link = document.createElement('a');
+        link.download = 'current_map.png';
+        link.href = canvas.toDataURL();
+        link.click();
     });
 }
 
