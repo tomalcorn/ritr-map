@@ -12,11 +12,11 @@ This repo contains the code for hosting a web app for a map editor for the board
 - [x] Fix stats table
 - [ ] Define and table for area control / diplomat tokens or something
 - [x] Add function to add diplomats tokens
-- [ ] Add function to download current map image
+- [x] Add function to download current map image
 
 ### Beautification
 
 - [ ] Add background colour
 - [ ] Colour background container for map with rounded corner border
-- [ ] Add background colour, and round corners on sidebar container
+- [ ] Integrate sidebar as full length with background colour. 
 - [ ] Ensure font stylings are consistent
