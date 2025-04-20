@@ -1,32 +1,46 @@
 #container {
-    display: flex;
+display: flex;
+overflow: hidden;
 }
 #map-container {
-    position: relative;
-    display: inline-block;
+    margin-left: 210px; /* Account for sidebar width (220px) + sidebar padding (15px) + margin */
+    flex-grow: 1; /* Take up remaining space */
+    padding-left: 35px; /* Reduced from 220px which seemed excessive */
+    padding-right: 35px;
 }
+
+#map {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
 #page-title {
-    font-family: "Gill Sans", sans-serif; /* ✅ Fixed */
+    font-family: "Gill Sans", sans-serif;
+    font-size: 20px;
+    padding-top: 20px;
     text-align: center;
-    font-size: 24px;
-    margin-bottom: 10px;
 }
 #sidebar {
+    height: calc(100% - 25px); /* Full-height: remove this if you want "auto" height */
+    width: 220px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    bottom: 0;
+    left: 0;
+    background-color: #e0dddd; /* Grey */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: auto;
+    padding: 15px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
-    display: inline-block;
-    margin-left: 20px; /* Space between map and sidebar */
-    padding: 10px;
-    border: 1px solid black;
-    background-color: #f4f4f4;
-    min-width: 240px; /* Sidebar width */
-    position: relative;
 }
 
 #clear-stickers-btn {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: red;
     color: white;
@@ -38,7 +52,7 @@
     margin-top: 10px;
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: darkgrey;
     color: white;
@@ -59,7 +73,7 @@
     border-collapse: collapse;
     margin-top: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     background-color: #f8f9fa;
     border-radius: 8px;
     overflow: hidden;
@@ -101,7 +115,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: lightcoral;
     color: black;
@@ -116,7 +130,7 @@
     margin-top: 10px;
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: grey;
     color: black;
@@ -131,7 +145,7 @@
     margin-top: 10px;
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: orangered;
     color: black;
@@ -163,7 +177,7 @@
 .popup-button {
     margin: 5px;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: lightblue;
     border: none;
@@ -189,7 +203,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
     padding: 10px;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background-color: dodgerblue;
     color: white;
@@ -203,5 +217,5 @@
     border: 0; 
     height: 1px; 
     background: lightgray; 
-    margin: 20px 0;
+    margin: 15px;
 }
